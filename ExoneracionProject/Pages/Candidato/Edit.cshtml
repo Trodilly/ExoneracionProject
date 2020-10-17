@@ -1,0 +1,119 @@
+﻿@page
+@model ExoneracionProject.Pages.Candidato.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Candidato</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <input type="hidden" asp-for="Candidato.Id" />
+                <div class="form-group col-3">
+                    <label asp-for="Candidato.Name" class="control-label"></label>
+                    <input asp-for="Candidato.Name" class="form-control" />
+                    <span asp-validation-for="Candidato.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Candidato.NationalIdentifier" class="control-label"></label>
+                    <input asp-for="Candidato.NationalIdentifier" class="form-control" />
+                    <span asp-validation-for="Candidato.NationalIdentifier" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Candidato.Cellphone" class="control-label"></label>
+                    <input asp-for="Candidato.Cellphone" class="form-control" />
+                    <span asp-validation-for="Candidato.Cellphone" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Candidato.Age" class="control-label"></label>
+                    <input asp-for="Candidato.Age" class="form-control" />
+                    <span asp-validation-for="Candidato.Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.Salary" class="control-label"></label>
+                    <input asp-for="Candidato.Salary" class="form-control" />
+                    <span asp-validation-for="Candidato.Salary" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.Languages"></label>
+                    <select class="form-control" asp-for="Candidato.Languages" asp-items="Model.Languages"></select>
+                    <span class="text-danger" asp-validation-for="Candidato.Languages"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.Grades"></label>
+                    <select class="form-control" asp-for="Candidato.Grades" asp-items="Model.Grades"></select>
+                    <span class="text-danger" asp-validation-for="Candidato.Grades"></span>
+                </div>
+            </div>
+            <hr />
+            <h4>Competences</h4>
+            <div class="row">
+                @foreach (var item in Model.Candidato.Competences)
+                {
+                    <div class="form-group col-4">
+                        <label asp-for="@item.Description" class="control-label"></label>
+                        <input asp-for="@item.Description" class="form-control" />
+                        <span asp-validation-for="@item.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check col-2">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="@item.Status" /> Status
+                        </label>
+                    </div>
+                }
+            </div>
+            <hr />
+            <h4>Previous Job</h4>
+            <div class="row">
+                @foreach (var item in Model.Candidato.JobExperiences)
+                {
+                    <div class="form-group col-6">
+                        <label asp-for="@item.CompanyName" class="control-label"></label>
+                        <input asp-for="@item.CompanyName" class="form-control" />
+                        <span asp-validation-for="@item.CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="@item.JobTittle" class="control-label"></label>
+                        <input asp-for="@item.JobTittle" class="form-control" />
+                        <span asp-validation-for="@item.JobTittle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="@item.From" class="control-label"></label>
+                        <input asp-for="@item.From" class="form-control" />
+                        <span asp-validation-for="@item.From" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="@item.To" class="control-label"></label>
+                        <input asp-for="@item.To" class="form-control" />
+                        <span asp-validation-for="@item.To" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="@item.Salary" class="control-label"></label>
+                        <input asp-for="@item.Salary" class="form-control" />
+                        <span asp-validation-for="@item.Salary" class="text-danger"></span>
+                    </div>
+                }
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

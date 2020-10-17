@@ -1,0 +1,66 @@
+﻿@page
+@model ExoneracionProject.Pages.Candidato.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Candidato</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.NationalIdentifier)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.NationalIdentifier)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Cellphone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Cellphone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Salary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Salary)
+        </dd>
+        
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Languages)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Grades)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Job)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Job.Id)
+        </dd>
+        
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Candidato.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

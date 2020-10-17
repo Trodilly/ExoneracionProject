@@ -1,0 +1,72 @@
+﻿@page
+@model ExoneracionProject.Pages.AdminPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Admin</h1>
+
+<h4>Edit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Admin.Id" />
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Admin.Nationalidentifier" class="control-label">National Id</label>
+                    <input asp-for="Admin.Nationalidentifier" class="form-control" readonly/>
+                    <span asp-validation-for="Admin.Nationalidentifier" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Admin.Name" class="control-label"></label>
+                    <input asp-for="Admin.Name" class="form-control" readonly />
+                    <span asp-validation-for="Admin.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Admin.StartDate" class="control-label"></label>
+                    <input asp-for="Admin.StartDate" class="form-control" readonly/>
+                    <span asp-validation-for="Admin.StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Admin.Department" class="control-label"></label>
+                    <input asp-for="Admin.Department" class="form-control" />
+                    <span asp-validation-for="Admin.Department" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-8">
+                    <label asp-for="Admin.JobTittle" class="control-label"></label>
+                    <input asp-for="Admin.JobTittle" class="form-control" />
+                    <span asp-validation-for="Admin.JobTittle" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Admin.Salary" class="control-label"></label>
+                    <input asp-for="Admin.Salary" class="form-control" />
+                    <span asp-validation-for="Admin.Salary" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Admin.Status" /> @Html.DisplayNameFor(model => model.Admin.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,161 @@
+﻿@page
+@model ExoneracionProject.Pages.Job.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <h4>Job</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Job.JobName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Job.JobName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Job.MinSalary)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Job.MinSalary)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Job.MaxSalary)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Job.MaxSalary)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Job.Status)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Job.Status)
+            </dd>
+        </dl>
+        <hr />
+        <h4>Recruits</h4>
+        @foreach (var item in Model.Job.Candidatos)
+        {
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Name:
+                </dt>
+                <dd class="col-sm-2">
+                    @item.Name
+                </dd>
+                <dt class="col-sm-2">
+                    Age:
+                </dt>
+                <dd>
+                    @item.Age
+                </dd>
+                <dt class="col-sm-2">
+                    Salary:
+                </dt>
+                <dd class="col-sm-2">
+                    @item.Salary
+                </dd>
+                <dt class="col-sm-2">
+                    Grades:
+                </dt>
+                <dd class="col-sm-2">
+                    @item.Grades
+                </dd>
+                <div class="row col-12">
+                    <dt class="col-sm-2">
+                        Competences:
+                    </dt>
+                    <dd class="col-sm-10">
+                        @foreach (var Compe in item.Competences)
+                        {
+                            @Compe.Description<br />
+                        }
+                    </dd>
+                </div>
+                <div class="row col-12">
+                    <dt class="col-sm-2">
+                        Previous Jobs:
+                    </dt>
+                    <dd class="col-sm-10">
+                        @foreach (var pJ in item.JobExperiences)
+                        {
+                            <hr />
+                            <br />
+                            @pJ.CompanyName<br />
+                            @pJ.JobTittle<br />
+                            @pJ.Salary<br />
+                            @pJ.From
+                            @pJ.To
+                        }
+                    </dd>
+                </div>
+
+            </dl>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" value="@User.Identity" id="Id"/>
+                <input type="hidden" asp-for="Candidato.JobId" value="@Model.Job.Id" />
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label asp-for="Candidato.Salary" class="control-label"></label>
+                        <input asp-for="Candidato.Salary" class="form-control" />
+                        <span asp-validation-for="Candidato.Salary" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Apply" class="btn btn-primary" />
+                </div>
+            </form>
+            <hr />
+            <div>
+                <h4>Job</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Job.JobName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Job.JobName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Job.MinSalary)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Job.MinSalary)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Job.MaxSalary)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Job.MaxSalary)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Job.Status)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Job.Status)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Job.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

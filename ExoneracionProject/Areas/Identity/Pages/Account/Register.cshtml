@@ -1,0 +1,162 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.Name" class="control-label"></label>
+                    <input asp-for="Candidato.Name" class="form-control" />
+                    <span asp-validation-for="Candidato.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.NationalIdentifier" class="control-label"> National Id</label>
+                    <input asp-for="Candidato.NationalIdentifier" class="form-control" />
+                    <span asp-validation-for="Candidato.NationalIdentifier" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.Cellphone" class="control-label"> Phone Number</label>
+                    <input asp-for="Candidato.Cellphone" class="form-control" />
+                    <span asp-validation-for="Candidato.Cellphone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="Candidato.Age" class="control-label"></label>
+                    <input asp-for="Candidato.Age" class="form-control" />
+                    <span asp-validation-for="Candidato.Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Candidato.Languages"></label>
+                    <select class="form-control" asp-for="Candidato.Languages" asp-items="Model.Languages"></select>
+                    <span class="text-danger" asp-validation-for="Candidato.Languages"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Candidato.Grades"></label>
+                    <select class="form-control" asp-for="Candidato.Grades" asp-items="Model.Grades"></select>
+                    <span class="text-danger" asp-validation-for="Candidato.Grades"></span>
+                </div>
+            </div>
+            <hr />
+            <h4>Competences</h4>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="Competences.Description" class="control-label"></label>
+                    <input asp-for="Competences.Description" class="form-control" />
+                    <span asp-validation-for="Competences.Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-check col-2">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Competences.Status" /> @Html.DisplayNameFor(model => model.Competences.Status)
+                </label>
+            </div>
+            <hr />
+            <h4>Previous Job</h4>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="JobExperience.CompanyName" class="control-label"></label>
+                    <input asp-for="JobExperience.CompanyName" class="form-control" />
+                    <span asp-validation-for="JobExperience.CompanyName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="JobExperience.JobTittle" class="control-label"></label>
+                    <input asp-for="JobExperience.JobTittle" class="form-control" />
+                    <span asp-validation-for="JobExperience.JobTittle" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="JobExperience.From" class="control-label"></label>
+                    <input asp-for="JobExperience.From" class="form-control" />
+                    <span asp-validation-for="JobExperience.From" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="JobExperience.To" class="control-label"></label>
+                    <input asp-for="JobExperience.To" class="form-control" />
+                    <span asp-validation-for="JobExperience.To" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="JobExperience.Salary" class="control-label"></label>
+                    <input asp-for="JobExperience.Salary" class="form-control" />
+                    <span asp-validation-for="JobExperience.Salary" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="here" class="row">
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+<button onclick="MoreJobButton()" class="btn btn-primary">More</button>
+
+<script>
+    var count = 0;
+    function MoreJobButton() {
+        count++;
+
+
+        var newForm = '<div class="form-group col-6">' +
+            '<label class="control-label" for="JobExperience_CompanyName">CompanyName</label>' +
+            '<input class="form-control" type="text" id="JobExperience_CompanyName" name="JobExperience.CompanyName" value="">' +
+            '<span class="text-danger field-validation-valid" data-valmsg-for="JobExperience.CompanyName" data-valmsg-replace="true"></span>' +
+            '</div>' +
+            '<div class="form-group col-6">' +
+            '<label class="control-label" for="JobExperience_JobTittle">JobTittle</label>' +
+            '<input class="form-control" type="text" id="JobExperience_JobTittle" name="JobExperience.JobTittle" value="">' +
+            '<span class="text-danger field-validation-valid" data-valmsg-for="JobExperience.JobTittle" data-valmsg-replace="true"></span>' +
+            '</div>' +
+            '<div class="form-group col-4">' +
+            '<label class="control-label" for="JobExperience_From">From</label>' +
+            '<input class="form-control" type="datetime-local" data-val="true" data-val-required="The From field is required." id="JobExperience_From" name="JobExperience.From" value="">' +
+            '<span class="text-danger field-validation-valid" data-valmsg-for="JobExperience.From" data-valmsg-replace="true"></span>' +
+            '</div>' +
+            '<div class="form-group col-4">' +
+            '<label class="control-label" for="JobExperience_To">To</label>' +
+            '<input class="form-control" type="datetime-local" data-val="true" data-val-required="The To field is required." id="JobExperience_To" name="JobExperience.To" value="">' +
+            '<span class="text-danger field-validation-valid" data-valmsg-for="JobExperience.To" data-valmsg-replace="true"></span>' +
+            '</div>' +
+            '<div class="form-group col-4">' +
+            '<label class="control-label" for="JobExperience_Salary">Salary</label>' +
+            '<input class="form-control" type="number" data-val="true" data-val-required="The Salary field is required." id="JobExperience_Salary" name="JobExperience.Salary" value="">' +
+            '<span class="text-danger field-validation-valid" data-valmsg-for="JobExperience.Salary" data-valmsg-replace="true"></span>' +
+            '</div>';
+
+        document.getElementById('here').insertAdjacentHTML('beforeend', newForm)
+    }
+</script>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

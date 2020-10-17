@@ -1,0 +1,65 @@
+﻿@page
+@model ExoneracionProject.Pages.Job.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (User.IsInRole("Admin"))
+{
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].MinSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].MaxSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Job) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                }
+                else
+                {
+                    <a asp-page="./Details" asp-route-id="@item.Id">Apply</a>
+                }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

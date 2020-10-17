@@ -1,0 +1,62 @@
+﻿@page
+@model ExoneracionProject.Pages.Candidato.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Candidato</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.NationalIdentifier)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.NationalIdentifier)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Cellphone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Cellphone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Languages)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Languages)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Grades)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Grades)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidato.Job)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidato.Job.JobName)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Candidato.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
