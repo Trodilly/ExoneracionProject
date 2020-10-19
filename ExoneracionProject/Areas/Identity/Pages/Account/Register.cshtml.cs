@@ -117,8 +117,7 @@ namespace ExoneracionProject.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    Input.Id = Guid.NewGuid();
-                    Candidato.Id = Input.Id;
+                    Candidato.Id = Guid.Parse(user.Id);
                     JobExperience.CandidatoId = Candidato.Id;
                     Competences.CandidatoId = Candidato.Id;
 

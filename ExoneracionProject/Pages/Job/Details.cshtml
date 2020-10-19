@@ -107,12 +107,11 @@ else
         <div class="col-md-12">
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" value="@User.Identity" id="Id"/>
-                <input type="hidden" asp-for="Candidato.JobId" value="@Model.Job.Id" />
+                <input type="hidden" value="@Model.Job.Id" name="jobId"/>
                 <div class="row">
                     <div class="form-group col-4">
                         <label asp-for="Candidato.Salary" class="control-label"></label>
-                        <input asp-for="Candidato.Salary" class="form-control" />
+                        <input name="salary" value="Hola" class="form-control" />
                         <span asp-validation-for="Candidato.Salary" class="text-danger"></span>
                     </div>
                 </div>
