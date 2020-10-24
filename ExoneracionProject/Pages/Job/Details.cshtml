@@ -112,12 +112,12 @@ else
                 <div class="row">
                     <div class="form-group col-4">
                         <label asp-for="Candidato.Salary" class="control-label"></label>
-                        <input name="salary" value="Hola" class="form-control" />
+                        <input name="salary" id="salarySug" class="form-control" />
                         <span asp-validation-for="Candidato.Salary" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Apply" class="btn btn-primary" />
+                    <input type="submit" value="Apply" onclick="Apply('@Model.Job.MinSalary', '@Model.Job.MaxSalary')" class="btn btn-primary" />
                 </div>
             </form>
             <hr />
@@ -171,12 +171,12 @@ else
                 </div>
                 <div class="form-group">
                     <label for="message-text" class="col-form-label">Salary:</label>
-                    <input class="form-control" id="message-text" asp-for="@Model.NewCandidato.Salary"/>
+                    <input class="form-control" id="salaryInput" asp-for="@Model.NewCandidato.Salary"/>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-round btn-success" asp-page-handler="Hire">Hire a Employee</button>
+                <button type="submit" onclick="HireVerification('@Model.Job.MinSalary', '@Model.Job.MaxSalary')" class="btn btn-round btn-success" asp-page-handler="Hire">Hire a Employee</button>
             </div>
         </form>
     </div>
@@ -188,6 +188,32 @@ else
         $('#RecruitId').val(Id);
         $('#JobId').val(JobId);
     };
+
+    function HireVerification(minSal, maxSal) {
+        var min = minSal;
+        var max = maxSal;
+
+        var salary = $("#salaryInput").val();
+
+        if (parseInt(min) > parseInt(salary) || parseInt(salary) > parseInt(max)) {
+            alert("Salario invalido");
+            event.preventDefault();
+            location.reload();
+        }
+    }
+
+    function Apply(minSal, maxSal) {
+        var min = minSal;
+        var max = maxSal;
+
+        var salary = $("#salarySug").val();
+
+        if (parseInt(min) > parseInt(salary) || parseInt(salary) > parseInt(max)) {
+            alert("Sugerencia de salario invalido");
+            event.preventDefault();
+            location.reload();
+        }
+    }
 </script>
 
 <div>

@@ -15,7 +15,7 @@
 <hr />
 @if (Model.StartDateFilter.HasValue)
 {
-    <h1>Empleados que ingresaron en: @Model.StartDateFilter.Value.Date </h1>
+    <h1>Empleados que ingresaron a partir de: @Model.StartDateFilter.Value.ToShortDateString() </h1>
 }
 <table class="table">
     <thead>

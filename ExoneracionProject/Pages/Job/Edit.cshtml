@@ -21,12 +21,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Job.MinSalary" class="control-label"></label>
-                <input asp-for="Job.MinSalary" class="form-control" />
+                <input asp-for="Job.MinSalary" id="min" class="form-control" />
                 <span asp-validation-for="Job.MinSalary" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Job.MaxSalary" class="control-label"></label>
-                <input asp-for="Job.MaxSalary" class="form-control" />
+                <input asp-for="Job.MaxSalary" id="max" class="form-control" />
                 <span asp-validation-for="Job.MaxSalary" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -35,7 +35,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit"  onclick="EditJob()" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -44,6 +44,20 @@
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
+
+<script>
+    function EditJob(minSal, maxSal) {
+        var min = $('#min').val();
+        var max = $('#max').val();
+
+        if (parseInt(min) > parseInt(max)) {
+            alert("Oferta de salario invalido");
+            event.preventDefault();
+            location.reload();
+        }
+    }
+</script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

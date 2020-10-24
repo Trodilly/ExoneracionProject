@@ -86,10 +86,12 @@ namespace ExoneracionProject.Pages.Job
             };
 
             _context.Admins.Add(employee);
-            _context.Jobs.Remove(Job);
-            _context.Candidatos.Remove(Candidato);
-
             await _context.SaveChangesAsync();
+            _context.Candidatos.Remove(Candidato);
+            await _context.SaveChangesAsync();
+            _context.Jobs.Remove(Job);
+            await _context.SaveChangesAsync();
+
             return RedirectToPage("./Index");
         }
     }

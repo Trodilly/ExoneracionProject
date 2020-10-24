@@ -17,6 +17,7 @@ namespace ExoneracionProject.Pages.Job
         public CreateModel(ExoneracionProject.Data.RecruitContext context)
         {
             _context = context;
+            Job = new Models.Job();
         }
 
         public IActionResult OnGet()
@@ -27,8 +28,6 @@ namespace ExoneracionProject.Pages.Job
         [BindProperty]
         public ExoneracionProject.Models.Job Job { get; set; }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
