@@ -23,6 +23,8 @@ namespace ExoneracionProject.Pages.Candidato
 
         public IList<ExoneracionProject.Models.Candidato> Candidato { get;set; }
 
+
+
         public async Task OnGetAsync()
         {
             Candidato = await _context.Candidatos

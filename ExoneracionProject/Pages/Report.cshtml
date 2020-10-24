@@ -1,0 +1,68 @@
+﻿@page
+
+@model ExoneracionProject.Pages.ReportModel
+@{
+}
+
+<form class="modal-content" enctype="multipart/form-data" method="post" asp-page="/Report/Details">
+    <input asp-for="@Model.StartDateFilter" />
+    <div class="form-group">
+        <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-round btn-success" asp-page-handler="DateFilter" asp-route-startDate="@Model.StartDateFilter">Search by Start Date</button>
+    </div>
+</form>
+
+<hr />
+@if (Model.StartDateFilter.HasValue)
+{
+    <h1>Empleados que ingresaron en: @Model.StartDateFilter.Value.Date </h1>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Admins[0].Nationalidentifier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admins[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admins[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admins[0].Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admins[0].JobTittle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admins[0].Salary)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Admins)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nationalidentifier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTittle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
